@@ -636,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
       startAutoPlay();
     });
 
-    // 10c. All Screens Sequence Controller (17 screens loop)
+    // 10c. All Screens Sequence Controller (All screens sequence loop)
     const allScreensMockup = document.getElementById('all-screens-mockup');
     if (allScreensMockup) {
       const allImages = allScreensMockup.querySelectorAll('.phone-screen-img');
@@ -772,19 +772,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!lightboxModal || !lightboxImg) return;
 
-    // Collect all unique screenshots from the page
-    const allScreens = Array.from(document.querySelectorAll('.phone-screen-img')).map((img) => ({
-      src: img.getAttribute('src'),
-      alt: img.getAttribute('alt') || 'Reminder Hub Screen'
-    }));
+    // Collect unique screenshots strictly from category view mockups to prevent any duplication
+    const categoryImgs = document.querySelectorAll('#panel-categories .phone-screen-img');
+    const sourceImgs = categoryImgs.length ? categoryImgs : document.querySelectorAll('.phone-screen-img');
 
     // Deduplicate by src
     const uniqueScreens = [];
     const seen = new Set();
-    allScreens.forEach((item) => {
-      if (!seen.has(item.src)) {
-        seen.add(item.src);
-        uniqueScreens.push(item);
+    sourceImgs.forEach((img) => {
+      const src = img.getAttribute('src');
+      if (src && !seen.has(src)) {
+        seen.add(src);
+        uniqueScreens.push({
+          src: src,
+          alt: img.getAttribute('alt') || 'Reminder Hub Screen'
+        });
       }
     });
 
