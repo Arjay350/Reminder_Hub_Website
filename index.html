@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reminder Hub — Everyday Reminders, Planning & Organization in One Place</title>
+  <meta name="description" content="Reminder Hub is a calm, practical Android organizer bringing everyday reminders, school schedules, bills, notebooks, accounts, and an offline pet companion together.">
+  <meta name="keywords" content="Reminder Hub, Android organizer, task manager, timetable, bills tracker, gas tracker, offline notes, Mochi pet companion">
+  <meta name="theme-color" content="#6366F1">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Reminder Hub — All Your Everyday Details in One Place">
+  <meta property="og:description" content="A practical personal companion for Android that helps you remember, organize, and manage the things you might otherwise forget.">
+  <meta property="og:image" content="assets/images/app_icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/app_icon.png">
+  <link rel="apple-touch-icon" href="assets/images/app_icon.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Dynamic Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Ambient Dynamic Mesh & Floating Glow Halos -->
+  <div class="bg-mesh-canvas" aria-hidden="true">
+    <div class="bg-dot-pattern"></div>
+    <div class="ambient-blob ambient-blob-1"></div>
+    <div class="ambient-blob ambient-blob-2"></div>
+    <div class="ambient-blob ambient-blob-3"></div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <a href="#hero" class="brand" aria-label="Reminder Hub Home">
+        <img src="assets/images/app_icon.png" alt="Reminder Hub app icon" class="brand-icon" width="40" height="40">
+        <div class="brand-text">
+          <span class="brand-title">Reminder Hub</span>
+          <span class="brand-tag">Android App</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-helps">How It Helps</a></li>
+          <li><a href="#screenshots">Screenshots</a></li>
+          <li><a href="#about-dev">Story</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action items: Theme toggle, Sound toggle & Download CTA -->
+      <div class="header-actions">
+        <button id="sound-toggle" class="btn-sound-toggle" aria-label="Toggle interaction sounds" title="Toggle audio feedback" aria-pressed="true">
+          <svg class="icon sound-on-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg class="icon sound-off-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle dark mode" title="Switch color theme">
+          <svg class="icon sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="#download" class="btn btn-primary btn-sm nav-download-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Download APK</span>
+        </a>
+
+        <!-- Mobile hamburger toggle button -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Menu -->
+    <div id="mobile-nav" class="mobile-nav" hidden>
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-links">
+          <li><a href="#features" class="mobile-link">Features</a></li>
+          <li><a href="#how-it-helps" class="mobile-link">How It Helps</a></li>
+          <li><a href="#screenshots" class="mobile-link">Screenshots</a></li>
+          <li><a href="#about-dev" class="mobile-link">Developer Story</a></li>
+          <li><a href="#faq" class="mobile-link">FAQ</a></li>
+          <li><a href="#download" class="mobile-link highlight">Download Android APK</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="pill-badge-group">
+            <span class="pill-badge">
+              <span class="badge-dot"></span>
+              Android App • v1.4.0
+            </span>
+            <span class="pill-badge pill-badge-secondary">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              100% Offline-First
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            Your personal companion for remembering <span class="text-accent">the things that matter.</span>
+          </h1>
+
+          <p class="hero-description">
+            Reminder Hub brings your daily reminders, class schedules, bill dates, household utilities, notebook entries, and account resets together into one calm, organized Android application.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://github.com/Arjay350/Reminder-Hub-/releases/download/v1.4.0-publish/Reminder_Hub.apk" download="Reminder_Hub.apk" class="btn btn-primary btn-lg" id="hero-download-btn">
+              <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download Android APK</span>
+            </a>
+            <a href="#features" class="btn btn-outline btn-lg">
+              <span>Explore Features</span>
+              <svg class="btn-icon-right" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <svg class="meta-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Direct .apk install</span>
+            </div>
+            <div class="meta-item">
+              <svg class="meta-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>No sign-up required</span>
+            </div>
+            <div class="meta-item">
+              <svg class="meta-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Built-in privacy lock</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="app-card-preview" id="hero-interactive-card">
+            <div class="app-card-glow"></div>
+            <div class="app-card-surface">
+              <div class="app-header-strip">
+                <img src="assets/images/app_icon.png" alt="Reminder Hub App Icon" class="hero-app-icon" width="68" height="68">
+                <div class="app-title-block">
+                  <div class="app-badge-row">
+                    <span class="app-badge">Official Release</span>
+                    <span class="app-live-pulse" title="Live Interactive Simulator"><span class="pulse-dot"></span> Interactive</span>
+                  </div>
+                  <h2 class="app-name">Reminder Hub</h2>
+                  <p class="app-sub">v1.4.0 • Built with Flutter &amp; Hive</p>
+                </div>
+              </div>
+
+              <!-- Interactive Simulator Tabs -->
+              <div class="hero-tabs-nav" role="tablist" aria-label="Interactive App Modules">
+                <button class="hero-tab-pill active" data-hero-panel="hero-panel-tasks" role="tab" aria-selected="true">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Tasks</span>
+                </button>
+                <button class="hero-tab-pill" data-hero-panel="hero-panel-timer" role="tab" aria-selected="false">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Focus Timer</span>
+                </button>
+                <button class="hero-tab-pill" data-hero-panel="hero-panel-mochi" role="tab" aria-selected="false">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                  <span>Mochi Pet</span>
+                </button>
+                <button class="hero-tab-pill" data-hero-panel="hero-panel-ai" role="tab" aria-selected="false">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>AI Resets</span>
+                </button>
+              </div>
+
+              <div class="app-preview-body">
+                <!-- Panel 1: Interactive Tasks -->
+                <div class="hero-interactive-panel active" id="hero-panel-tasks" role="tabpanel">
+                  <div class="panel-header-row">
+                    <span class="panel-section-label">Today's Active Reminders</span>
+                    <span id="hero-completed-count" class="hero-status-pill">1/3 Done</span>
+                  </div>
+
+                  <div class="interactive-tasks-list">
+                    <div class="interactive-task-item is-completed" role="checkbox" aria-checked="true" tabindex="0">
+                      <div class="task-checkbox-ring" aria-checked="true">
+                        <svg class="check-svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="task-info">
+                        <span class="task-title">Submit Calculus assignment Chapter 4</span>
+                        <div class="task-meta-row">
+                          <span class="task-tag tag-school">School Hub</span>
+                          <span class="task-due">Due 11:59 PM</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="interactive-task-item" role="checkbox" aria-checked="false" tabindex="0">
+                      <div class="task-checkbox-ring" aria-checked="false">
+                        <svg class="check-svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="task-info">
+                        <span class="task-title">Pay Meralco electric utility bill</span>
+                        <div class="task-meta-row">
+                          <span class="task-tag tag-bills">Bills &amp; Gas</span>
+                          <span class="task-due">₱2,450.00 • Due Tomorrow</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="interactive-task-item" role="checkbox" aria-checked="false" tabindex="0">
+                      <div class="task-checkbox-ring" aria-checked="false">
+                        <svg class="check-svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="task-info">
+                        <span class="task-title">Claude 3.7 quota reset cooldown</span>
+                        <div class="task-meta-row">
+                          <span class="task-tag tag-ai">AI Accounts</span>
+                          <span class="task-due">Cooldown ends 2:00 PM</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="interactive-hint">Tap any reminder to check it off interactively</p>
+                </div>
+
+                <!-- Panel 2: Pomodoro Study Timer -->
+                <div class="hero-interactive-panel" id="hero-panel-timer" role="tabpanel" hidden>
+                  <div class="pomodoro-mini-widget">
+                    <div class="pomodoro-subject">
+                      <span class="subject-dot"></span>
+                      <span>Advanced Data Structures &amp; Algorithms</span>
+                    </div>
+
+                    <div class="pomodoro-clock-wrap">
+                      <svg class="pomodoro-svg" viewBox="0 0 100 100" width="130" height="130">
+                        <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
+                        <circle class="ring-progress" id="hero-timer-progress-ring" cx="50" cy="50" r="42"></circle>
+                      </svg>
+                      <div class="pomodoro-center">
+                        <span class="timer-digits" id="hero-timer-display">25:00</span>
+                        <span class="timer-mode">Pomodoro Focus</span>
+                      </div>
+                    </div>
+
+                    <div class="pomodoro-controls">
+                      <button class="btn btn-primary btn-sm" id="hero-timer-toggle" aria-label="Start or pause study timer">
+                        <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                        <span class="btn-label">Start</span>
+                      </button>
+                      <button class="btn btn-outline btn-sm" id="hero-timer-reset" aria-label="Reset timer to 25 minutes">Reset</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 3: Mochi Pet Companion -->
+                <div class="hero-interactive-panel" id="hero-panel-mochi" role="tabpanel" hidden>
+                  <div class="mochi-mini-widget">
+                    <div class="mochi-avatar-container" id="mochi-avatar-wrap">
+                      <div class="mochi-cat-avatar">
+                        <div class="cat-ear ear-left"></div>
+                        <div class="cat-ear ear-right"></div>
+                        <div class="cat-face">
+                          <div class="cat-eyes">
+                            <span class="cat-eye"></span>
+                            <span class="cat-eye"></span>
+                          </div>
+                          <div class="cat-nose"></div>
+                          <div class="cat-mouth">ω</div>
+                          <div class="cat-blush blush-left"></div>
+                          <div class="cat-blush blush-right"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mochi-status-block">
+                      <div class="mochi-name-row">
+                        <strong>Mochi</strong>
+                        <span class="mochi-badge">Offline Companion</span>
+                      </div>
+                      <p class="mochi-speech" id="mochi-mood-label">Purring happily! (=^･ω･^=)</p>
+                      <div class="affinity-meter">
+                        <div class="affinity-label-row">
+                          <span>Affinity</span>
+                          <span class="affinity-val">85%</span>
+                        </div>
+                        <div class="affinity-track">
+                          <div class="affinity-fill" id="mochi-affinity-fill" style="width: 85%;"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mochi-action-row">
+                      <button class="btn btn-primary btn-sm btn-mochi-pet" id="btn-pet-mochi">
+                        <span>Pet Mochi ♥</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 4: AI Resets -->
+                <div class="hero-interactive-panel" id="hero-panel-ai" role="tabpanel" hidden>
+                  <div class="ai-resets-mini-widget">
+                    <div class="ai-provider-row">
+                      <div class="ai-provider-brand">
+                        <span class="ai-dot dot-cooldown"></span>
+                        <div class="ai-provider-info">
+                          <strong>Claude 3.7 Sonnet</strong>
+                          <span id="ai-timer-claude">Resetting in 01h 42m</span>
+                        </div>
+                      </div>
+                      <span class="ai-badge cooldown" id="ai-status-claude">Cooldown</span>
+                    </div>
+
+                    <div class="ai-provider-row">
+                      <div class="ai-provider-brand">
+                        <span class="ai-dot dot-active"></span>
+                        <div class="ai-provider-info">
+                          <strong>ChatGPT 4o</strong>
+                          <span>Ready to use</span>
+                        </div>
+                      </div>
+                      <span class="ai-badge active">Available</span>
+                    </div>
+
+                    <div class="ai-provider-row">
+                      <div class="ai-provider-brand">
+                        <span class="ai-dot dot-active"></span>
+                        <div class="ai-provider-info">
+                          <strong>Gemini 2.5 Pro</strong>
+                          <span>Daily quota fresh</span>
+                        </div>
+                      </div>
+                      <span class="ai-badge active">Available</span>
+                    </div>
+
+                    <div class="ai-provider-action">
+                      <button class="btn btn-outline btn-sm" id="btn-simulate-reset">Simulate Reset</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="quote-callout">
+                  <p class="quote-text">“If there are important things you might forget, let Reminder Hub help you remember them.”</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Architecture & Stats Strip -->
+    <section class="stats-section" id="stats">
+      <div class="container">
+        <div class="stats-strip reveal-on-scroll">
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-count-to="100" data-count-suffix="%">0%</span>
+            </div>
+            <div class="stat-label">Offline-First Privacy</div>
+            <div class="stat-sub">Embedded Hive storage on device</div>
+          </div>
+
+          <div class="stat-divider"></div>
+
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-count-to="6" data-count-suffix="">0</span>
+            </div>
+            <div class="stat-label">Integrated Hub Modules</div>
+            <div class="stat-sub">Tasks, school, bills, notes, vault &amp; pet</div>
+          </div>
+
+          <div class="stat-divider"></div>
+
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-count-to="17" data-count-suffix="">0</span>
+            </div>
+            <div class="stat-label">Documented Screen Views</div>
+            <div class="stat-sub">Zero bloat, focused Material 3 UI</div>
+          </div>
+
+          <div class="stat-divider"></div>
+
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-count-to="0" data-count-suffix="">0</span>
+            </div>
+            <div class="stat-label">Mandatory Accounts</div>
+            <div class="stat-sub">Zero sign-up, zero external tracker</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Philosophy / Why It Exists -->
+    <section class="story-highlight-section" id="philosophy">
+      <div class="container">
+        <div class="story-highlight-card reveal-on-scroll">
+          <div class="story-badge">The Idea Behind Reminder Hub</div>
+          <h2 class="story-heading">Built to solve a real, everyday struggle</h2>
+          <p class="story-paragraph">
+            Keeping track of homework, passwords, monthly utility bills, gas refills, and recurring deadlines can quickly become overwhelming when information is scattered across different apps. Reminder Hub was born out of a simple personal need: create one unified, offline-first companion that quietly takes care of the details so nothing slips through the cracks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-kicker">App Features</span>
+          <h2 class="section-title">Everything you need to stay on track</h2>
+          <p class="section-subtitle">
+            Every feature in Reminder Hub was designed for practical utility. Use the tools that match your routine and leave the rest alone.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1: Reminders & Calendar -->
+          <article class="feature-card reveal-on-scroll" data-category="reminders">
+            <div class="feature-icon-box icon-box-indigo">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-tag tag-indigo">Daily Organization</div>
+              <h3 class="feature-title">Reminders, Calendar &amp; History</h3>
+              <p class="feature-description">
+                Schedule one-off or repeating tasks (Daily, Weekly, Monthly, Yearly). Organize by categories like Work, School, Subscriptions, and Personal. Track completed items in full history so you always know when something was finished.
+              </p>
+              <ul class="feature-bullet-list">
+                <li>Priority levels: Low, Medium, and High</li>
+                <li>Custom reminder lead times &amp; alarm fallbacks</li>
+                <li>Preserved completion records and status tags</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Feature 2: School & Study -->
+          <article class="feature-card reveal-on-scroll" data-category="school">
+            <div class="feature-icon-box icon-box-teal">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-tag tag-teal">Academics &amp; Focus</div>
+              <h3 class="feature-title">School Schedules &amp; Study Timer</h3>
+              <p class="feature-description">
+                Keep class schedules, subjects, classrooms, and teacher names in a clean weekly timetable. Jump straight into the integrated Pomodoro Study Timer to power through revision sessions without distraction.
+              </p>
+              <ul class="feature-bullet-list">
+                <li>Weekly class timetable with day views</li>
+                <li>Pomodoro study timer with subject tracking</li>
+                <li>Safe schedule export &amp; sharing with classmates</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Feature 3: Bills & Gas Tracker -->
+          <article class="feature-card reveal-on-scroll" data-category="bills">
+            <div class="feature-icon-box icon-box-amber">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-tag tag-amber">Household &amp; Utilities</div>
+              <h3 class="feature-title">Bills &amp; LPG Gas Tracker</h3>
+              <p class="feature-description">
+                Stay on top of monthly utility bills with due date notifications, paid occurrence tracking, and payment history. Keep a dedicated log of household LPG cooking gas purchases and monitor tank duration over time.
+              </p>
+              <ul class="feature-bullet-list">
+                <li>Upcoming, Paid, and Overdue bill statuses</li>
+                <li>Preserved payment history across billing cycles</li>
+                <li>LPG gas consumption and supplier tracking</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Feature 4: Diary Notes & Notebooks -->
+          <article class="feature-card reveal-on-scroll" data-category="notes">
+            <div class="feature-icon-box icon-box-blue">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-tag tag-blue">Reflections &amp; Notes</div>
+              <h3 class="feature-title">Diary Notes &amp; Notebooks</h3>
+              <p class="feature-description">
+                Capture quick thoughts, journal entries, or structured notebooks right inside the app. Filter entries by mood tags, browse past thoughts through the mini-calendar, and export notes whenever needed.
+              </p>
+              <ul class="feature-bullet-list">
+                <li>Structured notebook folders and flexible entries</li>
+                <li>Mood tagging and mini-calendar timeline</li>
+                <li>Full local storage with export capabilities</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Feature 5: Account & AI Organization -->
+          <article class="feature-card reveal-on-scroll" data-category="vault">
+            <div class="feature-icon-box icon-box-purple">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-tag tag-purple">Credentials &amp; Quotas</div>
+              <h3 class="feature-title">Account Manager &amp; AI Resets</h3>
+              <p class="feature-description">
+                Store usernames and passwords behind biometric or PIN security. For developers and AI power users, track usage quotas across ChatGPT, Claude, Gemini, DeepSeek, and more, with automatic local reset timers.
+              </p>
+              <ul class="feature-bullet-list">
+                <li>Secure credential organizer with reveal toggles</li>
+                <li>AI account reset tracking by provider</li>
+                <li>Automatic transition from cooldown to active status</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Feature 6: Pet Companion -->
+          <article class="feature-card reveal-on-scroll" data-category="mochi">
+            <div class="feature-icon-box icon-box-pink">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-tag tag-pink">Friendly Companion</div>
+              <h3 class="feature-title">Mochi the Pet Companion</h3>
+              <p class="feature-description">
+                Meet Mochi, an animated 2D cat living right on your dashboard. Fully local with zero internet connection required, Mochi reacts to your classes with a backpack, sits with an open book during study, and purrs when pet.
+              </p>
+              <ul class="feature-bullet-list">
+                <li>4 customizable coat styles and feeding treats</li>
+                <li>Interactive touch gestures, hearts, and purr audio</li>
+                <li>Naturally celebrates completed tasks &amp; birthdays</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Helps Section -->
+    <section class="how-it-helps-section" id="how-it-helps">
+      <div class="container">
+        <div class="how-it-helps-wrapper">
+          <div class="how-content reveal-on-scroll">
+            <span class="section-kicker">Why It Helps</span>
+            <h2 class="section-title">Less mental clutter, more clarity every day</h2>
+            <p class="section-subtitle">
+              Most productivity apps force you into rigid workflows or require five different services to cover school, home, and personal reminders. Reminder Hub takes the opposite approach.
+            </p>
+
+            <div class="benefits-list">
+              <div class="benefit-item reveal-on-scroll">
+                <div class="benefit-marker">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="benefit-details">
+                  <h4>One calm home for fragmented details</h4>
+                  <p>Instead of juggling separate apps for LPG gas, school timetables, bill reminders, and passwords, keep the information you care about under one roof.</p>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-marker">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="benefit-details">
+                  <h4>100% offline-first reliability</h4>
+                  <p>Your reminders, schedules, notes, and credentials live on your device’s local Hive database. The app launches instantly with or without cellular signal.</p>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-marker">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="benefit-details">
+                  <h4>You control your own backups</h4>
+                  <p>Export full encrypted or JSON backups directly to a device folder of your choice, or optionally link Google Drive in Settings for cloud backup peace of mind.</p>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-marker">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="benefit-details">
+                  <h4>Pick and choose what you use</h4>
+                  <p>Are you a student? Focus on School and Study. Managing a household? Use Bills and Gas Tracker. You never need to use every feature to get value.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-visual reveal-on-scroll">
+            <div class="pillars-card">
+              <h3 class="pillars-title">The Reminder Hub Philosophy</h3>
+              <div class="pillar-row">
+                <div class="pillar-badge badge-offline">Offline</div>
+                <div class="pillar-text">No mandatory remote accounts, no cloud dependencies for core functionality.</div>
+              </div>
+              <div class="pillar-row">
+                <div class="pillar-badge badge-private">Protected</div>
+                <div class="pillar-text">Biometric fingerprint and PIN lock guard your sensitive accounts and passwords.</div>
+              </div>
+              <div class="pillar-row">
+                <div class="pillar-badge badge-practical">Practical</div>
+                <div class="pillar-text">Built from everyday life experiences to solve real forgotten tasks.</div>
+              </div>
+              <div class="pillar-row">
+                <div class="pillar-badge badge-companion">Companion</div>
+                <div class="pillar-text">Mochi the cat adds warmth and encouragement as you get things done.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Screenshots / Interface Showcase -->
+    <section class="screenshots-section" id="screenshots">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Interface Showcase</span>
+          <h2 class="section-title">Clean, focused, and intuitive by design</h2>
+          <p class="section-subtitle">
+            Crafted with modern Material 3 styling, Indigo accents, smooth dark/light contrast, and high-readability typography.
+          </p>
+        </div>
+
+        <!-- Showcase view switcher tabs -->
+        <div class="showcase-view-tabs" role="tablist" aria-label="Screenshots display modes">
+          <button class="showcase-tab-btn active" id="tab-btn-categories" role="tab" aria-selected="true" aria-controls="panel-categories">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Category View</span>
+            <span class="showcase-tab-badge">4 Hubs</span>
+          </button>
+          <button class="showcase-tab-btn" id="tab-btn-all-screens" role="tab" aria-selected="false" aria-controls="panel-all-screens">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>All Screens Sequence</span>
+            <span class="showcase-tab-badge">17 Screens • 3s Loop</span>
+          </button>
+        </div>
+
+        <!-- Panel 1: Clearly labeled screenshot mockup grid (Category View) -->
+        <div id="panel-categories" role="tabpanel" aria-labelledby="tab-btn-categories">
+          <div class="screenshots-grid">
+            <!-- Screenshot 1: Dashboard -->
+            <div class="screenshot-frame">
+              <div class="phone-mockup" data-carousel data-interval="3000" aria-label="Dashboard screenshot carousel">
+                <div class="phone-slider">
+                  <img src="assets/images/screens/Dashboard/1.jpg" alt="Home Dashboard & Mochi overview screen 1" class="phone-screen-img active" loading="lazy">
+                  <img src="assets/images/screens/Dashboard/2.jpg" alt="Home Dashboard & Mochi overview screen 2" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/Dashboard/3.jpg" alt="Home Dashboard & Mochi overview screen 3" class="phone-screen-img" loading="lazy">
+                  <div class="phone-counter-badge"><span class="current-slide">1</span> / 3</div>
+                  <div class="phone-nav-dots" role="tablist" aria-label="Dashboard slides">
+                    <button class="phone-nav-dot active" aria-label="Go to slide 1" data-slide="0"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 2" data-slide="1"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 3" data-slide="2"></button>
+                  </div>
+                  <button class="phone-nav-arrow prev" aria-label="Previous screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button class="phone-nav-arrow next" aria-label="Next screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="screenshot-caption">
+                <strong>Home Dashboard</strong>
+                <span>Daily overview, active alerts & Mochi</span>
+              </div>
+            </div>
+
+            <!-- Screenshot 2: School Hub -->
+            <div class="screenshot-frame">
+              <div class="phone-mockup" data-carousel data-interval="3000" aria-label="School Hub screenshot carousel">
+                <div class="phone-slider">
+                  <img src="assets/images/screens/School Hub/1.jpg" alt="School Hub timetable screen 1" class="phone-screen-img active" loading="lazy">
+                  <img src="assets/images/screens/School Hub/2.jpg" alt="School Hub timetable screen 2" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/School Hub/3.jpg" alt="School Hub study timer screen 3" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/School Hub/4.jpg" alt="School Hub subject schedule screen 4" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/School Hub/5.jpg" alt="School Hub class details screen 5" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/School Hub/6.jpg" alt="School Hub focus mode screen 6" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/School Hub/7.jpg" alt="School Hub revision list screen 7" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/School Hub/8.jpg" alt="School Hub completed studies screen 8" class="phone-screen-img" loading="lazy">
+                  <div class="phone-counter-badge"><span class="current-slide">1</span> / 8</div>
+                  <div class="phone-nav-dots" role="tablist" aria-label="School Hub slides">
+                    <button class="phone-nav-dot active" aria-label="Go to slide 1" data-slide="0"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 2" data-slide="1"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 3" data-slide="2"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 4" data-slide="3"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 5" data-slide="4"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 6" data-slide="5"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 7" data-slide="6"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 8" data-slide="7"></button>
+                  </div>
+                  <button class="phone-nav-arrow prev" aria-label="Previous screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button class="phone-nav-arrow next" aria-label="Next screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="screenshot-caption">
+                <strong>School Hub</strong>
+                <span>Timetable & integrated study timer</span>
+              </div>
+            </div>
+
+            <!-- Screenshot 3: Bills & Gas Tracker -->
+            <div class="screenshot-frame">
+              <div class="phone-mockup" data-carousel data-interval="3000" aria-label="Bills & Gas Tracker screenshot carousel">
+                <div class="phone-slider">
+                  <img src="assets/images/screens/Bills & LPG Tracker/1.jpg" alt="Bills & Gas Tracker screen 1" class="phone-screen-img active" loading="lazy">
+                  <img src="assets/images/screens/Bills & LPG Tracker/2.jpg" alt="Bills & Gas Tracker screen 2" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/Bills & LPG Tracker/3.jpg" alt="Bills & Gas Tracker screen 3" class="phone-screen-img" loading="lazy">
+                  <div class="phone-counter-badge"><span class="current-slide">1</span> / 3</div>
+                  <div class="phone-nav-dots" role="tablist" aria-label="Bills Tracker slides">
+                    <button class="phone-nav-dot active" aria-label="Go to slide 1" data-slide="0"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 2" data-slide="1"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 3" data-slide="2"></button>
+                  </div>
+                  <button class="phone-nav-arrow prev" aria-label="Previous screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button class="phone-nav-arrow next" aria-label="Next screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="screenshot-caption">
+                <strong>Bills & Gas Tracker</strong>
+                <span>Utility dates, logs & consumption</span>
+              </div>
+            </div>
+
+            <!-- Screenshot 4: Accounts & AI Resets -->
+            <div class="screenshot-frame">
+              <div class="phone-mockup" data-carousel data-interval="3000" aria-label="Accounts & AI Resets screenshot carousel">
+                <div class="phone-slider">
+                  <img src="assets/images/screens/Accounts & AI Resets/1.jpg" alt="Accounts & AI Resets screen 1" class="phone-screen-img active" loading="lazy">
+                  <img src="assets/images/screens/Accounts & AI Resets/2.jpg" alt="Accounts & AI Resets screen 2" class="phone-screen-img" loading="lazy">
+                  <img src="assets/images/screens/Accounts & AI Resets/3.jpg" alt="Accounts & AI Resets screen 3" class="phone-screen-img" loading="lazy">
+                  <div class="phone-counter-badge"><span class="current-slide">1</span> / 3</div>
+                  <div class="phone-nav-dots" role="tablist" aria-label="Accounts slides">
+                    <button class="phone-nav-dot active" aria-label="Go to slide 1" data-slide="0"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 2" data-slide="1"></button>
+                    <button class="phone-nav-dot" aria-label="Go to slide 3" data-slide="2"></button>
+                  </div>
+                  <button class="phone-nav-arrow prev" aria-label="Previous screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button class="phone-nav-arrow next" aria-label="Next screen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="screenshot-caption">
+                <strong>Accounts & AI Resets</strong>
+                <span>Biometric-guarded accounts & reset clock</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: All Screens Continuous Sequence (1 to 17) -->
+        <div id="panel-all-screens" role="tabpanel" aria-labelledby="tab-btn-all-screens" hidden>
+          <div class="all-screens-showcase-wrap">
+            <div class="phone-mockup" id="all-screens-mockup" data-carousel data-interval="3000" aria-label="All 17 application screens sequence">
+              <div class="phone-slider">
+                <img src="assets/images/1.jpg" alt="Reminder Hub screen 1 - Dashboard main" class="phone-screen-img active" loading="lazy">
+                <img src="assets/images/2.jpg" alt="Reminder Hub screen 2 - Dashboard tasks" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/3.jpg" alt="Reminder Hub screen 3 - Dashboard calendar" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/4.jpg" alt="Reminder Hub screen 4 - School timetable" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/5.jpg" alt="Reminder Hub screen 5 - School schedule view" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/6.jpg" alt="Reminder Hub screen 6 - Study focus timer" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/7.jpg" alt="Reminder Hub screen 7 - Study sessions log" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/8.jpg" alt="Reminder Hub screen 8 - Subject details" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/9.jpg" alt="Reminder Hub screen 9 - Exam countdowns" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/10.jpg" alt="Reminder Hub screen 10 - Class teacher notes" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/11.jpg" alt="Reminder Hub screen 11 - Study statistics" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/12.jpg" alt="Reminder Hub screen 12 - Bills overview" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/13.jpg" alt="Reminder Hub screen 13 - LPG gas tracker" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/14.jpg" alt="Reminder Hub screen 14 - Utilities payment history" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/15.jpg" alt="Reminder Hub screen 15 - AI resets clock" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/16.jpg" alt="Reminder Hub screen 16 - Credential vault" class="phone-screen-img" loading="lazy">
+                <img src="assets/images/17.jpg" alt="Reminder Hub screen 17 - Password security" class="phone-screen-img" loading="lazy">
+                
+                <div class="phone-counter-badge"><span class="current-slide">1</span> / 17</div>
+
+                <button class="phone-nav-arrow prev" aria-label="Previous screen">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="phone-nav-arrow next" aria-label="Next screen">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Controller bar for All Screens -->
+            <div class="showcase-control-bar">
+              <span class="showcase-step-text" id="all-screens-step-label">Screen 1 of 17</span>
+              <div class="showcase-progress-track">
+                <div class="showcase-progress-fill" id="all-screens-progress-bar" style="width: 5.88%;"></div>
+              </div>
+              <div class="showcase-action-btns">
+                <button class="showcase-btn-icon" id="all-screens-prev-btn" aria-label="Previous screen" title="Previous screen">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="showcase-btn-icon" id="all-screens-play-btn" aria-label="Pause slideshow" title="Play / Pause slideshow">
+                  <svg id="all-screens-pause-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                  <svg id="all-screens-play-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" style="display: none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+                <button class="showcase-btn-icon" id="all-screens-next-btn" aria-label="Next screen" title="Next screen">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              </div>
+            </div>
+
+            <p class="showcase-screen-meta-note">
+              Every screen displays for 3 seconds before advancing, looping back to Screen 1 automatically. Hover or tap arrows to navigate manually.
+            </p>
+          </div>
+        </div>
+
+        <div class="screenshot-instruction-note">
+          <p>
+            <strong>Live Screens Connected:</strong> Displaying all official app screens from <code>assets/images/</code> with an automatic 3-second continuous loop.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Developer Story / About the App -->
+    <section class="about-dev-section" id="about-dev">
+      <div class="container">
+        <div class="about-dev-card">
+          <div class="about-dev-grid">
+            <div class="about-dev-photo-col">
+              <div class="developer-avatar-wrap">
+                <img src="assets/images/developer_profile.jpg" alt="Junjifil Jr. Castro — Developer of Reminder Hub" class="developer-photo" width="140" height="140">
+                <div class="avatar-ring"></div>
+              </div>
+              <div class="dev-meta">
+                <span class="dev-name">Junjifil Jr. Castro</span>
+                <span class="dev-tag">Developer & Creator</span>
+                <span class="dev-handle">“Your 6'2 Developer”</span>
+              </div>
+            </div>
+
+            <div class="about-dev-content-col">
+              <div class="section-kicker">The Creator's Note</div>
+              <h2 class="about-dev-title">Why Reminder Hub was created</h2>
+              <div class="about-dev-text">
+                <p>
+                  “Reminder Hub was created from a simple personal need: staying on top of passwords, school schedules, reminders, and important bills can be difficult when there are so many things to remember. As someone who often forgets important details and deadlines, I wanted to create one application that could help me stay organized and remind me of the things that matter.”
+                </p>
+                <p>
+                  “What started as a solution to my own everyday struggles became an application designed around one simple idea: <em>If there are important things you might forget, let Reminder Hub help you remember them.</em>”
+                </p>
+              </div>
+              <div class="about-dev-badges">
+                <span class="badge-feature">Flutter & Material 3</span>
+                <span class="badge-feature">Hive Offline Storage</span>
+                <span class="badge-feature">Android Native Notifications</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download APK Section -->
+    <section class="download-section" id="download">
+      <div class="container">
+        <div class="download-card">
+          <div class="download-badge">Direct Android Distribution</div>
+          <h2 class="download-title">Get Reminder Hub for Android</h2>
+          <p class="download-subtitle">
+            Download the standalone APK package directly to your Android device. Fast, lightweight, and completely functional offline.
+          </p>
+
+          <div class="download-cta-block">
+            <a href="https://github.com/Arjay350/Reminder-Hub-/releases/download/v1.4.0-publish/Reminder_Hub.apk" download="Reminder_Hub.apk" class="btn btn-primary btn-xl" id="main-download-btn">
+              <svg class="btn-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <div class="download-btn-text">
+                <span class="btn-primary-label">Download APK (v1.4.0)</span>
+                <span class="btn-secondary-label">Android 8.0 (Oreo) or newer</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Step by Step Install Guide -->
+          <div class="install-guide">
+            <h3 class="install-guide-title">How to install an APK on Android</h3>
+            <div class="install-steps-grid">
+              <div class="install-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <h4>Download File</h4>
+                  <p>Tap the download button above to save the <code>Reminder_Hub.apk</code> file to your device.</p>
+                </div>
+              </div>
+
+              <div class="install-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <h4>Allow Source</h4>
+                  <p>When prompted by Android or your browser, allow "Install unknown apps" for that app in Settings.</p>
+                </div>
+              </div>
+
+              <div class="install-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <h4>Install & Launch</h4>
+                  <p>Tap "Install" on the package installer prompt, then open Reminder Hub to start organizing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-kicker">Frequently Asked Questions</span>
+          <h2 class="section-title">Common questions answered</h2>
+          <p class="section-subtitle">
+            Clear, practical facts about Reminder Hub’s offline architecture and feature set.
+          </p>
+        </div>
+
+        <!-- Minimalist Instant FAQ Search & Topic Toolbar -->
+        <div class="faq-search-wrapper reveal-on-scroll">
+          <div class="faq-search-box">
+            <svg class="faq-search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" id="faq-search" placeholder="Type a keyword to filter questions (e.g. offline, backup, password, Mochi)..." aria-label="Search frequently asked questions">
+            <button id="faq-search-clear" class="faq-search-clear" aria-label="Clear search" style="display: none;">&times;</button>
+          </div>
+
+          <!-- Dynamic Topic Filter Chips -->
+          <div class="faq-topic-chips" role="toolbar" aria-label="Quick topic filter">
+            <button class="faq-chip active" data-topic="all">All Topics</button>
+            <button class="faq-chip" data-topic="offline">Offline First</button>
+            <button class="faq-chip" data-topic="apk">APK Direct</button>
+            <button class="faq-chip" data-topic="security">Security &amp; PIN</button>
+            <button class="faq-chip" data-topic="backup">Backups</button>
+            <button class="faq-chip" data-topic="mochi">Mochi Pet</button>
+          </div>
+
+          <!-- Dynamic Toolbar: Counter and Expand All / Collapse All -->
+          <div class="faq-toolbar-row">
+            <span id="faq-counter-label" class="faq-counter-pill">Showing 7 questions</span>
+            <button id="faq-expand-all-btn" class="faq-action-btn" aria-label="Expand all answers">
+              <span class="action-icon">⤢</span>
+              <span class="action-text">Expand All</span>
+            </button>
+          </div>
+
+          <p id="faq-no-results" class="faq-no-results" style="display: none;">No questions match your search. Try another keyword or reset filters.</p>
+        </div>
+
+        <div class="faq-accordion" id="faq-list">
+          <!-- FAQ 1 -->
+          <div class="faq-item" data-topic="offline all">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-1" id="faq-q-1">
+              <span class="faq-question-text">What is Reminder Hub and who is it designed for?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-1" role="region" aria-labelledby="faq-q-1" hidden>
+              <p>
+                Reminder Hub is a personal Android companion app designed for students, busy individuals, and households who want one reliable place for reminders, class timetables, bill due dates, LPG gas purchases, notebooks, and account resets without having to juggle half a dozen separate apps.
+              </p>
+              <div class="faq-feedback-strip">
+                <span class="feedback-prompt">Was this helpful?</span>
+                <div class="feedback-buttons">
+                  <button class="btn-faq-feedback" data-val="yes" aria-label="Yes, this answer was helpful">👍 Yes</button>
+                  <button class="btn-faq-feedback" data-val="no" aria-label="No, this answer was not helpful">👎 No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item" data-topic="offline">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-2" id="faq-q-2">
+              <span class="faq-question-text">Does Reminder Hub require an internet connection?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-2" role="region" aria-labelledby="faq-q-2" hidden>
+              <p>
+                No. Reminder Hub is built from the ground up as an offline-first app. Your reminders, schedules, notes, pet interactions, and saved accounts reside locally on your device inside an embedded Hive database. An internet connection is only needed if you choose to back up to Google Drive or submit feedback via Google Forms.
+              </p>
+              <div class="faq-feedback-strip">
+                <span class="feedback-prompt">Was this helpful?</span>
+                <div class="feedback-buttons">
+                  <button class="btn-faq-feedback" data-val="yes" aria-label="Yes, this answer was helpful">👍 Yes</button>
+                  <button class="btn-faq-feedback" data-val="no" aria-label="No, this answer was not helpful">👎 No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item" data-topic="apk">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-3" id="faq-q-3">
+              <span class="faq-question-text">Is Reminder Hub available on the Google Play Store?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-3" role="region" aria-labelledby="faq-q-3" hidden>
+              <p>
+                Currently, Reminder Hub is distributed directly as an Android APK package. There is no official Google Play Store listing at this time. You can safely download and install the APK by following the installation steps provided on this page.
+              </p>
+              <div class="faq-feedback-strip">
+                <span class="feedback-prompt">Was this helpful?</span>
+                <div class="feedback-buttons">
+                  <button class="btn-faq-feedback" data-val="yes" aria-label="Yes, this answer was helpful">👍 Yes</button>
+                  <button class="btn-faq-feedback" data-val="no" aria-label="No, this answer was not helpful">👎 No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item" data-topic="apk">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-4" id="faq-q-4">
+              <span class="faq-question-text">How do I install an APK file on my Android device?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-4" role="region" aria-labelledby="faq-q-4" hidden>
+              <p>
+                Download the APK file using the download button on this site. Open your phone's notification shade or Downloads folder and tap the downloaded file. If Android warns you that the source is untrusted, tap Settings on that prompt and toggle "Allow from this source." Then return and tap "Install."
+              </p>
+              <div class="faq-feedback-strip">
+                <span class="feedback-prompt">Was this helpful?</span>
+                <div class="feedback-buttons">
+                  <button class="btn-faq-feedback" data-val="yes" aria-label="Yes, this answer was helpful">👍 Yes</button>
+                  <button class="btn-faq-feedback" data-val="no" aria-label="No, this answer was not helpful">👎 No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item" data-topic="security">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-5" id="faq-q-5">
+              <span class="faq-question-text">How are my passwords and accounts secured?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-5" role="region" aria-labelledby="faq-q-5" hidden>
+              <p>
+                All account entries and passwords stay stored on your physical device. The app supports biometric authentication (Fingerprint) and a local PIN code gate before sensitive actions can be accessed. Password fields are obscured by default with visibility eye toggles.
+              </p>
+              <div class="faq-feedback-strip">
+                <span class="feedback-prompt">Was this helpful?</span>
+                <div class="feedback-buttons">
+                  <button class="btn-faq-feedback" data-val="yes" aria-label="Yes, this answer was helpful">👍 Yes</button>
+                  <button class="btn-faq-feedback" data-val="no" aria-label="No, this answer was not helpful">👎 No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item" data-topic="backup">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-6" id="faq-q-6">
+              <span class="faq-question-text">How do backups work?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-6" role="region" aria-labelledby="faq-q-6" hidden>
+              <p>
+                Reminder Hub provides two backup options:
+              </p>
+              <ul>
+                <li><strong>Local folder backup:</strong> Export your full data as a versioned JSON backup directly into any folder you choose on your phone storage, and restore it at any time.</li>
+                <li><strong>Google Drive backup:</strong> You can optionally connect your Google account in Settings to save and restore backups to your personal Google Drive storage.</li>
+              </ul>
+              <div class="faq-feedback-strip">
+                <span class="feedback-prompt">Was this helpful?</span>
+                <div class="feedback-buttons">
+                  <button class="btn-faq-feedback" data-val="yes" aria-label="Yes, this answer was helpful">👍 Yes</button>
+                  <button class="btn-faq-feedback" data-val="no" aria-label="No, this answer was not helpful">👎 No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="faq-item" data-topic="mochi">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-7" id="faq-q-7">
+              <span class="faq-question-text">What is Mochi the Pet Companion?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-7" role="region" aria-labelledby="faq-q-7" hidden>
+              <p>
+                Mochi is a native, offline 2D animated cat companion living directly on the app's dashboard. It reacts to your school classes by wearing a backpack, sits with an open book during focus study timer sessions, and purrs when pet. You can customize coat styles, earn food treats from completing tasks, and interact with touch gestures.
+              </p>
+              <div class="faq-feedback-strip">
+                <span class="feedback-prompt">Was this helpful?</span>
+                <div class="feedback-buttons">
+                  <button class="btn-faq-feedback" data-val="yes" aria-label="Yes, this answer was helpful">👍 Yes</button>
+                  <button class="btn-faq-feedback" data-val="no" aria-label="No, this answer was not helpful">👎 No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="brand footer-brand">
+            <img src="assets/images/app_icon.png" alt="Reminder Hub app icon" class="brand-icon" width="36" height="36">
+            <span class="brand-title">Reminder Hub</span>
+          </div>
+          <p class="footer-summary">
+            A practical personal organizer for keeping track of useful everyday details on Android.
+          </p>
+          <div class="footer-tech-note">
+            <span>Version 1.4.0 • 100% Offline & Private</span>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-link-list">
+            <li><a href="#features">Confirmed Features</a></li>
+            <li><a href="#how-it-helps">How It Helps</a></li>
+            <li><a href="#screenshots">Screenshots</a></li>
+            <li><a href="#about-dev">Developer Story</a></li>
+            <li><a href="#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Download &amp; Project</h4>
+          <ul class="footer-link-list">
+            <li><a href="https://github.com/Arjay350/Reminder-Hub-/releases/download/v1.4.0-publish/Reminder_Hub.apk" download="Reminder_Hub.apk">Download Android APK (v1.4.0)</a></li>
+            <li><a href="https://github.com/Arjay350/Reminder-Hub-" target="_blank" rel="noopener noreferrer">Source Repository on GitHub</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Contact & Connect</h4>
+          <ul class="footer-link-list">
+            <li>
+              <a href="mailto:rjyastro@gmail.com" class="contact-link">
+                <svg class="footer-link-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>rjyastro@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <span class="footer-dev-mention">Developer: Junjifil Jr. Castro</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright-text">
+          &copy; <span id="current-year">2026</span> Reminder Hub. All rights reserved.
+        </p>
+        <p class="footer-disclaimer">
+          Android is a trademark of Google LLC. Reminder Hub is an independent personal organizer app.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal for unconfigured placeholders -->
+  <div id="placeholder-modal" class="modal-backdrop" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 id="modal-title">Placeholder Link Information</h3>
+        <button id="modal-close-btn" class="modal-close" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>This button is set to the placeholder link <strong id="modal-placeholder-name">[APK_DOWNLOAD_URL]</strong>.</p>
+        <p>To enable downloads on your live site:</p>
+        <ol>
+          <li>Host your compiled <code>app-release.apk</code> file (e.g. on GitHub Releases, Cloudflare R2, or your server).</li>
+          <li>Open <code>index.html</code> and search for <code>[APK_DOWNLOAD_URL]</code>.</li>
+          <li>Replace it with your direct download URL.</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-ok-btn" class="btn btn-primary btn-sm">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Screenshot Lightbox Modal -->
+  <div id="screenshot-lightbox" class="lightbox-modal" hidden role="dialog" aria-modal="true" aria-label="Screenshot fullscreen preview">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-container">
+      <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close fullscreen preview">&times;</button>
+      <div class="lightbox-viewer">
+        <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Previous screenshot">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="lightbox-img-frame">
+          <img id="lightbox-img" src="" alt="Screenshot" class="lightbox-img">
+        </div>
+        <button id="lightbox-next" class="lightbox-nav-btn next" aria-label="Next screenshot">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+      <div class="lightbox-footer">
+        <span id="lightbox-title" class="lightbox-caption">Reminder Hub Screen</span>
+        <span id="lightbox-counter" class="lightbox-count">1 / 17</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Minimalist Floating Quick Bar -->
+  <div id="floating-quick-bar" class="floating-quick-bar" aria-hidden="true">
+    <a href="#hero" class="quick-brand-link" aria-label="Scroll to top of Reminder Hub">
+      <img src="assets/images/app_icon.png" alt="Reminder Hub app icon" width="24" height="24">
+      <span class="quick-title">Reminder Hub</span>
+    </a>
+    <div class="quick-divider"></div>
+    <a href="https://github.com/Arjay350/Reminder-Hub-/releases/download/v1.4.0-publish/Reminder_Hub.apk" download="Reminder_Hub.apk" class="quick-btn-download">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <span>Download APK</span>
+    </a>
+    <button id="btn-back-to-top" class="quick-btn-top" aria-label="Back to top" title="Back to top">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
