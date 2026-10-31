@@ -1,11 +1,11 @@
 # Reminder Hub — Official Website & Showcase 📱✨
 
-The official responsive landing page and web showcase for **Reminder Hub**, a calm, practical, and 100% offline-first Android organizer built with Flutter & Hive.
+The official responsive landing page and web showcase for **Reminder Hub**, a calm, practical, local-first Android organizer built with Flutter & Hive and optional Google Drive backups.
 
 [![Website Status](https://img.shields.io/badge/Status-Live%20Ready-success?style=flat-square)](index.html)
 [![App Version](https://img.shields.io/badge/Android%20App-v1.4.0-6366F1?style=flat-square&logo=android&logoColor=white)](https://github.com/Arjay350/Reminder-Hub-/releases/download/v1.4.0-publish/Reminder_Hub.apk)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
-[![Offline First](https://img.shields.io/badge/Privacy-100%25%20Offline-10B981?style=flat-square)](privacy.html)
+[![Local First](https://img.shields.io/badge/Storage-Local--First%20%7C%20Optional%20Google%20Drive-10B981?style=flat-square)](privacy.html)
 
 ---
 
@@ -27,7 +27,7 @@ This repository hosts the companion marketing and showcase website for **Reminde
 - 🌓 **Dynamic Theme Engine:** Seamless Light and Dark mode toggle with persistent local storage preference.
 - 🔊 **Synthesized Web Audio Feedback:** Subtle, calming UI sound effects generated using Web Audio API (zero external audio asset dependencies).
 - 📱 **Fully Responsive Glassmorphic Design:** Optimized across mobile, tablet, and desktop viewports with fluid CSS layout.
-- 🛡️ **Dedicated Privacy Policy Page:** Comprehensive, Google Play-ready privacy documentation outlining offline storage, device permissions, and zero tracking.
+- 🛡️ **Dedicated Privacy Policy Page:** Privacy documentation covering local storage, optional Google Drive backups, device permissions, and analytics practices.
 - ⚡ **Zero Framework Overhead:** Built purely with semantic HTML5, modern CSS3 variables, and vanilla JavaScript for instant loading speeds.
 
 ---

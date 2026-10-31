@@ -105,8 +105,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
 
+  function updateScreenshotTheme(theme) {
+    document.querySelectorAll('#screenshots .phone-screen-img').forEach((img) => {
+      const originalSrc = img.getAttribute('data-original-src') || img.getAttribute('src');
+      if (!originalSrc) return;
+      const match = originalSrc.match(/^assets\/images\/screens\/(.+?)\/([^/]+)(\?.*)?$/);
+      if (!match) return;
+
+      img.setAttribute('data-original-src', originalSrc);
+      const category = match[1];
+      let filename = match[2];
+      if (theme === 'light' && category === 'Bills & LPG Tracker') {
+        filename = filename.replace(/^bills_/, 'bill_');
+      }
+
+      img.setAttribute('src', `assets/screens/${category}/${theme === 'dark' ? 'Dark' : 'Light'}/${filename}${match[3] || ''}`);
+    });
+  }
+
   function setTheme(theme) {
     htmlElement.setAttribute('data-theme', theme);
+    updateScreenshotTheme(theme);
+    document.dispatchEvent(new Event('reminderhub:themechange'));
     if (themeToggleBtn) {
       themeToggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
       themeToggleBtn.setAttribute('title', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
@@ -784,7 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (src && !seen.has(src)) {
         seen.add(src);
         uniqueScreens.push({
-          src: src,
+          img: img,
           alt: img.getAttribute('alt') || 'Reminder Hub Screen'
         });
       }
@@ -792,8 +812,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentLightboxIdx = 0;
 
-    function openLightbox(src) {
-      const foundIdx = uniqueScreens.findIndex((s) => s.src === src);
+    function openLightbox(img) {
+      const source = img.getAttribute('data-original-src') || img.getAttribute('src');
+      const foundIdx = uniqueScreens.findIndex((screen) => {
+        return screen.img === img ||
+          (screen.img.getAttribute('data-original-src') || screen.img.getAttribute('src')) === source;
+      });
       currentLightboxIdx = foundIdx !== -1 ? foundIdx : 0;
       updateLightboxContent();
       lightboxModal.removeAttribute('hidden');
@@ -814,7 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateLightboxContent() {
       const item = uniqueScreens[currentLightboxIdx];
       if (!item) return;
-      lightboxImg.src = item.src;
+      lightboxImg.src = item.img.getAttribute('src');
       lightboxImg.alt = item.alt;
       if (lightboxTitle) lightboxTitle.textContent = item.alt;
       if (lightboxCounter) {
@@ -828,12 +852,14 @@ document.addEventListener('DOMContentLoaded', () => {
       SoundFX.tick();
     }
 
+    document.addEventListener('reminderhub:themechange', updateLightboxContent);
+
     // Attach click listeners to all phone screen images
     document.querySelectorAll('.phone-screen-img').forEach((img) => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', (e) => {
         e.stopPropagation();
-        openLightbox(img.getAttribute('src'));
+        openLightbox(img);
       });
     });
 
